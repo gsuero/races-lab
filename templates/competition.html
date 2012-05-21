@@ -13,7 +13,8 @@ $def with (competition_context)
               <div class="control-group">
                 <label class="control-label" for="starts_on">Когда это было?</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" id="starts_on" name="starts_on" required="required" maxlength="20"
+                  <input type="text" class="input-xlarge" id="starts_on" name="starts_on" required="required" maxlength="20" 
+                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}\:[0-9]{2}\:[0-9]{2}"
                     value="$competition_context.competition.starts_on"/>
                   <!-- <p class="help-block">Supporting help text</p> -->
                 </div>
@@ -40,7 +41,7 @@ $def with (competition_context)
 			  <div class="control-group">
                 <label class="control-label" for="races_count">Сколько?</label>
                 <div class="controls">
-                  <input type="text" class="input-xlarge" id="races_count" name="races_count" required="required" maxlength="20"
+                  <input type="number" class="input-xlarge" id="races_count" name="races_count" required="required" min="1"
                     value="$competition_context.competition.races_count"/>
                   <!-- <p class="help-block">Supporting help text</p> -->
                 </div>

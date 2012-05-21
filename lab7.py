@@ -25,10 +25,10 @@ urls = (
     '/owners/(all|[a-f0-9]{32})/delete', 'OwnersDelete',
     '/horses', 'Horses',
     '/horses/new', 'HorsesNew',
-	'/competitions', 'Competitions',
-	'/competitions/new', 'CompetitionsNew',
-	'/competitions/update', 'CompetitionsUpdate',
-	'/competitions/([a-f0-9]{32})/edit', 'CompetitionsEdit',
+    '/competitions', 'Competitions',
+    '/competitions/new', 'CompetitionsNew',
+    '/competitions/update', 'CompetitionsUpdate',
+    '/competitions/([a-f0-9]{32})/edit', 'CompetitionsEdit',
     '/competitions/(all|[a-f0-9]{32})/delete', 'CompetitionsDelete'
 )
 
@@ -63,8 +63,8 @@ if __name__ == "__main__":
         'HorsesNew': handlers.horses.HorsesNewHandler,
         'Competitions': handlers.competitions.CompetitionsHandler,
         'CompetitionsNew': handlers.competitions.CompetitionsNewHandler,
-		'CompetitionsUpdate': handlers.competitions.CompetitionsUpdateHandler,
-		'CompetitionsEdit': handlers.competitions.CompetitionsEditHandler,
+        'CompetitionsUpdate': handlers.competitions.CompetitionsUpdateHandler,
+        'CompetitionsEdit': handlers.competitions.CompetitionsEditHandler,
         'CompetitionsDelete': handlers.competitions.CompetitionsDeleteHandler
     })
     app.add_processor(init_processor)

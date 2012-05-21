@@ -28,7 +28,12 @@ $def with (horses)
                 $for horse in horses:
                   <tr>
                     <td>$horse.nickname</td>
-                    <td>$horse.sex</td>
+                    $if horse.sex == 'M':
+                      <td>Мужской</td>
+                    $elif horse.sex == 'F':
+                      <td>Женский</td>
+                    $else:
+                      <td>Неизвестный</td>
                     <td>$horse.age</td>
                     <td>$horse.owner_fullname</td>
                     <td>

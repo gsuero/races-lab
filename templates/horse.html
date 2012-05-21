@@ -1,0 +1,56 @@
+$def with (horse_context)
+
+      <section>
+
+        <div class="page-header">
+          <h1>Редактирование лошадки</h1>
+        </div>
+        <p>
+          <form class="form-horizontal" method="post" action="/horses/update">
+            <fieldset>
+              $if not horse_context.is_new:
+                <input type="hidden" name="id" value="$horse_context.horse.get_id()"/>
+              <div class="control-group">
+                <label class="control-label" for="nickname">Кличка</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" id="nickname" name="nickname" required="required" maxlength="20"
+                    value="$horse_context.horse.nickname"/>
+                  <!-- <p class="help-block">Supporting help text</p> -->
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="sex">Пол</label>
+                <div class="controls">
+                  <select id="sex" name="sex" value="$horse_context.horse.sex">
+                    <option value="M">Мужской</option>
+                    <option value="F">Женский</option>
+                  </select>
+                  <!-- <p class="help-block">Supporting help text</p> -->
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="age">Возраст</label>
+                <div class="controls">
+                  <input type="number" class="input-xlarge" id="age" name="age" required="required" min="1" max="2000"
+                    value="$horse_context.horse.age"/>
+                  <!-- <p class="help-block">Supporting help text</p> -->
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="owner">Хозяин лошадки</label>
+                <div class="controls">
+                  <select type="text" class="input-xlarge" id="owner" name="owner_id" value="$horse_context.horse.get_owner_id()">
+                    $for owner in horse_context.owners:
+                      <option value="$owner.get_id()">$owner.fullname</option>
+                  </select>
+                  <p class="help-block">Нет нужного хозяина? <a href="/owners/new">Добавьте</a> его</p>
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+              </div>
+            </fieldset>
+          </form>
+        </p>
+
+      </section>

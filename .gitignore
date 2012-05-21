@@ -27,7 +27,7 @@ pip-log.txt
 .mr.developer.cfg
 
 #Logs
-.log
+*.log
 
 # Docs
-.pdf
+*.pdf

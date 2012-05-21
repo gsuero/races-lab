@@ -1,0 +1,36 @@
+$def with (owner_context)
+
+      <section>
+
+        <div class="page-header">
+          <h1>Редактирование хозяина</h1>
+        </div>
+        <p>
+          <form class="form-horizontal" method="post" action="/owners/update">
+            <fieldset>
+              $if not owner_context.is_new:
+                <input type="hidden" name="id" value="$owner_context.owner.get_id()"/>
+              <div class="control-group">
+                <label class="control-label" for="fullname">Как зовут</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" id="fullname" name="fullname" required="required" maxlength="20"
+                    value="$owner_context.owner.fullname"/>
+                  <!-- <p class="help-block">Supporting help text</p> -->
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="address">Адрес</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" id="address" name="address" required="required" maxlength="20"
+                    value="$owner_context.owner.address"/>
+                  <!-- <p class="help-block">Supporting help text</p> -->
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+              </div>
+            </fieldset>
+          </form>
+        </p>
+
+      </section>

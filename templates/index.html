@@ -1,0 +1,43 @@
+$def with (oracle)
+
+      <section>
+
+        <div class="page-header">
+          <h1>Лошадки! <small>Beta</small></h1>
+        </div>
+        <p>Ура, лошадки работают! Вы можете перейти к одному из разделов:</p>
+        <p>
+          <ul>
+            <li><a href="/owners">Хозяева</a> &ndash; пароли, адреса и явки.</li>
+            <li><a href="/horses">Лошадки</a> &ndash; центральные герои сего действа</li>
+            <li><a href="/competitions">Сумасшедшие гонки</a> на маршрутках</li>
+            <li><a href="/jockeys">Жокеи</a> и их досье</li>
+            <li><a href="/horses-n-jockeys">Рабство</a> &ndash; печальная хроника неволи лошадок</li>
+            <li><a href="/results">Результаты</a> всего этого кромешного ужаса</li>
+          </ul>
+        </p>
+        <h2>Статус Oracle DB <small>aka Оракляча</small></h2>
+        <p>
+          <table class="table">
+            <thead>
+              <th>Версия</th>
+              <th>Кодировка</th>
+              <th>Юзверь</th>
+              <th>Пароль</th>
+            </thead>
+            <tbody>
+              <tr>
+                <td>$oracle['version']</td>
+                <td>$oracle['nencoding']</td>
+                <td>$oracle['username']</td>
+                <td>$oracle['password']</td>
+              </tr>
+            </tbody>
+          </table>
+        </p>
+        <p>
+          <span class="label label-info">Примечание</span>
+          При разработке приложения ни одна из лошадок не пострадала. Честно.
+        </p>
+
+      </section>

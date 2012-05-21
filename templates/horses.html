@@ -1,0 +1,47 @@
+$def with (horses)
+
+      <section>
+
+        <div class="page-header">
+          <h1>Лошадки</h1>
+        </div>
+        <p>
+          Здесь можно управлять несчастными лошадками.
+        </p>
+        <p>
+          <div class="btn-group">
+            <a class="btn" href="/horses/new" title="Добавить новую лошадку">Добавить</a>
+            <a class="btn" href="/horses" title="Обновить список">Обновить</a>
+            <a class="btn" href="/horses/all/delete" title="Удалить всех">Расстрелять</a>
+          </div>
+        </p>
+        <p>
+          $if len(horses) != 0:
+            <table class="table">
+              <thead>
+                <th>Кличка</th>
+                <th>Пол</th>
+                <th>Возраст</th>
+                <th>Хозяин</th>
+              </thead>
+              <tbody>
+                $for horse in horses:
+                  <tr>
+                    <td>$horse.nickname</td>
+                    <td>$horse.sex</td>
+                    <td>$horse.age</td>
+                    <td>$horse.owner_fullname</td>
+                    <td>
+                      <a href="/horses/$horse.get_id()/edit" title="Редактировать"><i class="icon-edit"></i></a>
+                      <a href="/horses/$horse.get_id()/delete" title="На шашлык"><i class="icon-remove"></i></a>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+          $else:
+            <div class="alert alert-success">
+              Вообще нету лошадок. Хотите <a href="/horses/new">добавить</a> новых?
+            </div>
+        </p>
+
+      </section>

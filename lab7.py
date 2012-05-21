@@ -10,10 +10,12 @@ import cx_Oracle
 import handlers.index
 import handlers.owners
 import handlers.horses
+import handlers.competitions
 import handlers.jockeys
 
 import persistency.owners
 import persistency.horses
+import persistency.competitions
 import persistency.jockeys
 
 urls = (
@@ -28,6 +30,11 @@ urls = (
     '/horses/update', 'HorsesUpdate',
     '/horses/([a-f0-9]{32})/edit', 'HorsesEdit',
     '/horses/(all|[a-f0-9]{32})/delete', 'HorsesDelete',
+    '/competitions', 'Competitions',
+    '/competitions/new', 'CompetitionsNew',
+    '/competitions/update', 'CompetitionsUpdate',
+    '/competitions/([a-f0-9]{32})/edit', 'CompetitionsEdit',
+    '/competitions/(all|[a-f0-9]{32})/delete', 'CompetitionsDelete',
     '/jockeys', 'Jockeys',
     '/jockeys/new', 'JockeysNew',
     '/jockeys/update', 'JockeysUpdate',
@@ -46,6 +53,7 @@ def init_processor(handler):
     web.ctx.oracle.autocommit = True
     web.ctx.owners = persistency.owners.OwnersPersistency(web.ctx.oracle)
     web.ctx.horses = persistency.horses.HorsesPersistency(web.ctx.oracle)
+    web.ctx.competitions = persistency.competitions.CompetitionsPersistency(web.ctx.oracle)
     web.ctx.jockeys = persistency.jockeys.JockeysPersistency(web.ctx.oracle)
     web.ctx.render = render
     return handler()
@@ -67,6 +75,11 @@ if __name__ == "__main__":
         'HorsesUpdate': handlers.horses.HorsesUpdateHandler,
         'HorsesEdit': handlers.horses.HorsesEditHandler,
         'HorsesDelete': handlers.horses.HorsesDeleteHandler,
+        'Competitions': handlers.competitions.CompetitionsHandler,
+        'CompetitionsNew': handlers.competitions.CompetitionsNewHandler,
+        'CompetitionsUpdate': handlers.competitions.CompetitionsUpdateHandler,
+        'CompetitionsEdit': handlers.competitions.CompetitionsEditHandler,
+        'CompetitionsDelete': handlers.competitions.CompetitionsDeleteHandler,
         'Jockeys': handlers.jockeys.JockeysHandler,
         'JockeysNew': handlers.jockeys.JockeysNewHandler,
         'JockeysUpdate': handlers.jockeys.JockeysUpdateHandler,

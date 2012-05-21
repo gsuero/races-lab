@@ -1,0 +1,47 @@
+$def with (competitions)
+
+      <section>
+
+        <div class="page-header">
+          <h1>Соревнования <small>бедных лошадок</small></h1>
+        </div>
+        <p>
+          СКАЧИ ИЛИ УМРИ!.
+        </p>
+        <p>
+          <div class="btn-group">
+            <a class="btn" href="/competitions/new" title="Добавить новое событие">Добавить</a>
+            <a class="btn" href="/competitions" title="Освежите список">Обновить</a>
+            <a class="btn" href="/competitions/all/delete" title="Удалить всех">Расстрелять</a>
+          </div>
+        </p>
+        <p>
+          $if len(competitions) != 0:
+            <table class="table">
+              <thead>
+                <th>Дата</th>
+                <th>Место</th>
+                <th>Название</th>
+				<th>Число заездов</th>
+              </thead>
+              <tbody>
+                $for competition in competitions:
+                  <tr>
+                    <td>$competition.starts_on</td>
+                    <td>$competition.location</td>
+					<td>$competition.title</td>
+					<td>$competition.races_count</td>
+                    <td>
+                      <a href="/competitions/$competition.get_id()/edit" title="Редактировать"><i class="icon-edit"></i></a>
+                      <a href="/competitions/$competition.get_id()/delete" title="Уволить"><i class="icon-remove"></i></a>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+          $else:
+            <div class="alert alert-success">
+              Вообще нету соревнований. Хотите <a href="/competitions/new">добавить</a> новых?
+            </div>
+        </p>
+
+      </section>

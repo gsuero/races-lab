@@ -1,0 +1,55 @@
+$def with (competition_context)
+
+      <section>
+
+        <div class="page-header">
+          <h1>Редактирование заезда</h1>
+        </div>
+        <p>
+          <form class="form-horizontal" method="post" action="/competitions/update">
+            <fieldset>
+              $if not competition_context.is_new:
+                <input type="hidden" name="id" value="$competition_context.competition.get_id()"/>
+              <div class="control-group">
+                <label class="control-label" for="starts_on">Когда это было?</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" id="starts_on" name="starts_on" required="required" maxlength="20"
+                    value="$competition_context.competition.starts_on"/>
+                  <!-- <p class="help-block">Supporting help text</p> -->
+                </div>
+              </div>
+			  
+              <div class="control-group">
+                <label class="control-label" for="location">С какого района?</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" id="location" name="location" required="required" maxlength="20"
+                    value="$competition_context.competition.location"/>
+                  <!-- <p class="help-block">Supporting help text</p> -->
+                </div>
+              </div>
+			  
+			  <div class="control-group">
+                <label class="control-label" for="title">Как звать, то?</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" id="title" name="title" required="required" maxlength="20"
+                    value="$competition_context.competition.title"/>
+                  <!-- <p class="help-block">Supporting help text</p> -->
+                </div>
+              </div>
+			  
+			  <div class="control-group">
+                <label class="control-label" for="races_count">Сколько?</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" id="races_count" name="races_count" required="required" maxlength="20"
+                    value="$competition_context.competition.races_count"/>
+                  <!-- <p class="help-block">Supporting help text</p> -->
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+              </div>
+            </fieldset>
+          </form>
+        </p>
+
+      </section>

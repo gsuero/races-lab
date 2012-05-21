@@ -10,9 +10,11 @@ import cx_Oracle
 import handlers.index
 import handlers.owners
 import handlers.horses
+import handlers.competitions
 
 import persistency.owners
 import persistency.horses
+import persistency.competitions
 
 urls = (
     '/', 'Index',
@@ -22,7 +24,12 @@ urls = (
     '/owners/([a-f0-9]{32})/edit', 'OwnersEdit',
     '/owners/(all|[a-f0-9]{32})/delete', 'OwnersDelete',
     '/horses', 'Horses',
-    '/horses/new', 'HorsesNew'
+    '/horses/new', 'HorsesNew',
+	'/competitions', 'Competitions',
+	'/competitions/new', 'CompetitionsNew',
+	'/competitions/update', 'CompetitionsUpdate',
+	'/competitions/([a-f0-9]{32})/edit', 'CompetitionsEdit',
+    '/competitions/(all|[a-f0-9]{32})/delete', 'CompetitionsDelete'
 )
 
 # Master-template.
@@ -36,6 +43,7 @@ def init_processor(handler):
     web.ctx.oracle.autocommit = True
     web.ctx.owners = persistency.owners.OwnersPersistency(web.ctx.oracle)
     web.ctx.horses = persistency.horses.HorsesPersistency(web.ctx.oracle)
+    web.ctx.competitions = persistency.competitions.CompetitionsPersistency(web.ctx.oracle)
     web.ctx.render = render
     return handler()
 
@@ -52,7 +60,12 @@ if __name__ == "__main__":
         'OwnersEdit': handlers.owners.OwnersEditHandler,
         'OwnersDelete': handlers.owners.OwnersDeleteHandler,
         'Horses': handlers.horses.HorsesHandler,
-        'HorsesNew': handlers.horses.HorsesNewHandler
+        'HorsesNew': handlers.horses.HorsesNewHandler,
+        'Competitions': handlers.competitions.CompetitionsHandler,
+        'CompetitionsNew': handlers.competitions.CompetitionsNewHandler,
+		'CompetitionsUpdate': handlers.competitions.CompetitionsUpdateHandler,
+		'CompetitionsEdit': handlers.competitions.CompetitionsEditHandler,
+        'CompetitionsDelete': handlers.competitions.CompetitionsDeleteHandler
     })
     app.add_processor(init_processor)
     # Run.

@@ -26,7 +26,12 @@ class HorsesPersistency:
 
     def get_horses(self):
         cursor = self.__oracle.cursor()
-        cursor.execute('select h.horse_id, h.nickname, h.sex, h.age, h.owner_id, o.fullname from lab3_horses h, lab3_owners o order by h.nickname')
+        cursor.execute('''
+            select h.horse_id, h.nickname, h.sex, h.age, h.owner_id, o.fullname 
+            from lab3_horses h, lab3_owners o 
+            where o.owner_id = h.owner_id 
+            order by h.nickname'''
+        )
         horses = [self.__read_horse(row) for row in cursor]
         cursor.close()
         return horses

@@ -31,3 +31,6 @@ pip-log.txt
 
 # Docs
 *.pdf
+
+# Other
+credentials

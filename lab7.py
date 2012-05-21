@@ -31,8 +31,8 @@ render = web.template.render('templates/', base='layout')
 def init_processor(handler):
     # Without this the localized strings are unreadable.
     os.environ["NLS_LANG"] = "RUSSIAN_RUSSIA.UTF8"
-    # Connection to Oracle ...
-    web.ctx.oracle = cx_Oracle.connect('scott/123456@XE')
+    # Connecting to Oracle ...
+    web.ctx.oracle = cx_Oracle.connect(open('credentials', 'rt').read())
     web.ctx.oracle.autocommit = True
     web.ctx.owners = persistency.owners.OwnersPersistency(web.ctx.oracle)
     web.ctx.horses = persistency.horses.HorsesPersistency(web.ctx.oracle)

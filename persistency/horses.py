@@ -26,10 +26,10 @@ class HorsesPersistency:
 
     def get_horses(self):
         cursor = self.__oracle.cursor()
-        cursor.execute('select h.horse_id, h.nickname, h.sex, h.age, h.owner_id, o.fullname from lab3_horses h, lab3_owners o')
-        owners = [self.__read_horse(row) for row in cursor]
+        cursor.execute('select h.horse_id, h.nickname, h.sex, h.age, h.owner_id, o.fullname from lab3_horses h, lab3_owners o order by h.nickname')
+        horses = [self.__read_horse(row) for row in cursor]
         cursor.close()
-        return owners
+        return horses
 
     def __read_horse(self, row):
         if row is None:
@@ -41,4 +41,4 @@ class HorsesPersistency:
         horse.age = int(row[3])
         horse.owner_id = row[4]
         horse.owner_fullname = row[5]
-        return owner
+        return horse

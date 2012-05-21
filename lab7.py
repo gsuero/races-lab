@@ -22,7 +22,10 @@ urls = (
     '/owners/([a-f0-9]{32})/edit', 'OwnersEdit',
     '/owners/(all|[a-f0-9]{32})/delete', 'OwnersDelete',
     '/horses', 'Horses',
-    '/horses/new', 'HorsesNew'
+    '/horses/new', 'HorsesNew',
+    '/horses/update', 'HorsesUpdate',
+    '/horses/([a-f0-9]{32})/edit', 'HorsesEdit',
+    '/horses/(all|[a-f0-9]{32})/delete', 'HorsesDelete'
 )
 
 # Master-template.
@@ -52,7 +55,10 @@ if __name__ == "__main__":
         'OwnersEdit': handlers.owners.OwnersEditHandler,
         'OwnersDelete': handlers.owners.OwnersDeleteHandler,
         'Horses': handlers.horses.HorsesHandler,
-        'HorsesNew': handlers.horses.HorsesNewHandler
+        'HorsesNew': handlers.horses.HorsesNewHandler,
+        'HorsesUpdate': handlers.horses.HorsesUpdateHandler,
+        'HorsesEdit': handlers.horses.HorsesEditHandler,
+        'HorsesDelete': handlers.horses.HorsesDeleteHandler
     })
     app.add_processor(init_processor)
     # Run.

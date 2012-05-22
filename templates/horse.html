@@ -39,9 +39,12 @@ $def with (horse_context)
               <div class="control-group">
                 <label class="control-label" for="owner">Хозяин лошадки</label>
                 <div class="controls">
-                  <select type="text" class="input-xlarge" id="owner" name="owner_id" value="$horse_context.horse.get_owner_id()">
+                  <select type="text" class="input-xlarge" id="owner" name="owner_id">
                     $for owner in horse_context.owners:
-                      <option value="$owner.get_id()">$owner.fullname</option>
+                        $if owner.id == horse_context.horse.owner_id:
+                            <option value="$owner.get_id()" selected>$owner.fullname</option>
+                        $else:
+                            <option value="$owner.get_id()">$owner.fullname</option>
                   </select>
                   <p class="help-block">Нет нужного хозяина? <a href="/owners/new">Добавьте</a> его</p>
                 </div>

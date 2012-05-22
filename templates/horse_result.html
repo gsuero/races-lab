@@ -1,0 +1,59 @@
+$def with (horse_result_context)
+
+      <section>
+
+        <div class="page-header">
+          <h1>Редактирование заезда</h1>
+        </div>
+        <p>
+          <form class="form-horizontal" method="post" action="/horse_results/update">
+            <fieldset>
+              $if not horse_result_context.is_new:
+                <input type="hidden" name="is_new" value=""/>
+              $else:
+                <input type="hidden" name="is_new" value="1"/>
+              
+              <div class="control-group">
+                <label class="control-label" for="horse">Кличка лошадки</label>
+                <div class="controls">
+                  <select type="text" class="input-xlarge" id="horse" name="horse_id">
+                    $for horse in horse_result_context.horses:
+                        $if horse.id == horse_result_context.horse_result.horse_id:
+                            <option value="$horse.get_id()" selected>$horse.nickname</option>
+                        $else:
+                            <option value="$horse.get_id()">$horse.nickname</option>
+                  </select>
+                  <p class="help-block">Нет нужной лошади? <a href="/horses/new">Добавьте</a> её</p>
+                </div>
+              </div>
+			  
+			  <div class="control-group">
+                <label class="control-label" for="competition">Название соревнования</label>
+                <div class="controls">
+                  <select type="text" class="input-xlarge" id="competition" name="competition_id">
+                    $for competition in horse_result_context.competitions:
+                        $if horse_result_context.horse_result.competition_id == competition.id:
+                            <option value="$competition.get_id()" selected>$competition.title</option>
+                        $else:
+                            <option value="$competition.get_id()">$competition.title</option>
+                  </select>
+                  <p class="help-block">Нет нужного соревнования? <a href="/horses/new">Добавьте</a> его</p>
+                </div>
+              </div>
+			  
+			  <div class="control-group">
+                <label class="control-label" for="place">Место</label>
+                <div class="controls">
+                  <input type="number" class="input-xlarge" id="place" name="place" required="required" min="1" max="64"
+                    value="$horse_result_context.horse_result.place"/>
+                  <!-- <p class="help-block">Supporting help text</p> -->
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+              </div>
+            </fieldset>
+          </form>
+        </p>
+
+      </section>

@@ -45,8 +45,8 @@ urls = (
     '/slavery', 'Slavery',
     '/slavery/new', 'SlaveryNew',
     '/slavery/update', 'SlaveryUpdate',
-    '/slavery/([a-f0-9]{32})/edit', 'SlaveryEdit',
-    '/slavery/(all|[a-f0-9]{32})/delete', 'SlaveryDelete',
+    '/slavery/([a-f0-9]{32}),([a-f0-9]{32})/edit', 'SlaveryEdit',
+    '/slavery/([a-f0-9]{32}),([a-f0-9]{32})/delete', 'SlaveryDelete',
 )
 
 # Master-template.
@@ -62,6 +62,7 @@ def init_processor(handler):
     web.ctx.horses = persistency.horses.HorsesPersistency(web.ctx.oracle)
     web.ctx.competitions = persistency.competitions.CompetitionsPersistency(web.ctx.oracle)
     web.ctx.jockeys = persistency.jockeys.JockeysPersistency(web.ctx.oracle)
+    web.ctx.slaveries = persistency.slavery.SlaveryPersistency(web.ctx.oracle)
     web.ctx.render = render
     return handler()
 

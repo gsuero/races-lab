@@ -62,9 +62,20 @@ class JockeysPersistency:
         cursor.execute('''
             select jockey_id, address, age, weight, height, fullname
             from lab3_jockeys''')
-        owners = [self.__read_jockey(row) for row in cursor]
+        jockeys = [self.__read_jockey(row) for row in cursor]
         cursor.close()
-        return owners
+        return jockeys
+
+    def get_jockeys_by_horse_nickname(self, nickname):
+        cursor = self.__oracle.cursor()
+        cursor.execute('''
+            select j.jockey_id, j.address, j.age, j.weight, j.height, j.fullname
+            from lab3_jockeys j, lab3_horses h, lab3_horse_jockeys hj
+            where h.nickname = :nickname and hj.jockey_id = j.jockey_id and hj.horse_id = h.horse_id''',
+            nickname=nickname)
+        jockeys = [self.__read_jockey(row) for row in cursor]
+        cursor.close()
+        return jockeys
 
     def delete_jockey(self, id):
         cursor = self.__oracle.cursor()

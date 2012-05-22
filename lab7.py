@@ -14,6 +14,7 @@ import handlers.horse_results
 import handlers.competitions
 import handlers.jockeys
 import handlers.slavery
+import handlers.first
 
 import persistency.owners
 import persistency.horses
@@ -54,6 +55,7 @@ urls = (
     '/slavery/update', 'SlaveryUpdate',
     '/slavery/([a-f0-9]{32}),([a-f0-9]{32})/edit', 'SlaveryEdit',
     '/slavery/([a-f0-9]{32}),([a-f0-9]{32})/delete', 'SlaveryDelete',
+    '/query1', 'Query1',
 )
 
 # Master-template.
@@ -111,6 +113,7 @@ if __name__ == "__main__":
         'SlaveryUpdate': handlers.slavery.SlaveryUpdateHandler,
         'SlaveryEdit': handlers.slavery.SlaveryEditHandler,
         'SlaveryDelete': handlers.slavery.SlaveryDeleteHandler,
+        'Query1': handlers.first.FirstHandler
     })
     app.add_processor(init_processor)
     # Run.

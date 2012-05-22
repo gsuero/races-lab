@@ -1,0 +1,46 @@
+$def with (slaveries)
+
+      <section>
+
+        <div class="page-header">
+          <h1>Рабство</h1>
+        </div>
+        <p>
+          Здесь можно управлять, какими из лошадок владели жокеи.
+        </p>
+        <p>
+          <div class="btn-group">
+            <a class="btn" href="/slavery/new" title="Добавить новую запись">Добавить</a>
+            <a class="btn" href="/slavery" title="Обновить список">Обновить</a>
+          </div>
+        </p>
+        <p>
+          $if len(slaveries) != 0:
+            <table class="table">
+              <thead>
+                <th>Имя жокея</th>
+                <th>Кличка лошадки</th>
+                <th>Откуда</th>
+                <th>Покуда</th>
+              </thead>
+              <tbody>
+                $for slavery in slaveries:
+                  <tr>
+                    <td>$slavery.jockey_fullname</td>
+                    <td>$slavery.horse_nickname</td>
+                    <td>$slavery.from_date</td>
+                    <td>$slavery.due_date</td>
+                    <td>
+                      <a href="/slavery/$slavery.horse_id,$slavery.jockey_id/edit" title="Редактировать"><i class="icon-edit"></i></a>
+                      <a href="/slavery/$slavery.horse_id,$slavery.jockey_id/delete" title="Удалить запись"><i class="icon-remove"></i></a>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+          $else:
+            <div class="alert alert-success">
+              Вообще нету записей. Хотите <a href="/slavery/new">добавить</a> новых?
+            </div>
+        </p>
+
+      </section>

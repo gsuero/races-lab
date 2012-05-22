@@ -1,0 +1,71 @@
+$def with (slavery_context)
+
+      <section>
+
+        <div class="page-header">
+          <h1>Редактирование записи</h1>
+        </div>
+        <p>
+          <form class="form-horizontal" method="post" action="/slavery/update">
+            <fieldset>
+              $if not slavery_context.is_new:
+                <input type="hidden" name="horse_id" value="$slavery_context.horse_jockey.horse_id"/>
+                <input type="hidden" name="jockey_id" value="$slavery_context.horse_jockey.jockey_id"/>
+              <div class="control-group">
+                <label class="control-label" for="horse">Лошадка</label>
+                <div class="controls">
+                  $if slavery_context.is_new:
+                    <select class="input-xlarge" id="horse" name="horse_id">
+                  $else:
+                    <select class="input-xlarge disabled" id="horse" name="horse_id" disabled="disabled">
+                  $for horse in slavery_context.horses:
+                    $if slavery_context.horse_jockey.horse_id == horse.get_id():
+                      <option value="$horse.get_id()" selected="selected">$horse.nickname</option>
+                    $else:
+                      <option value="$horse.get_id()">$horse.nickname</option>
+                  </select>
+                  <p class="help-block">Нет лошадок? <a href="/horses/new">Добавить</a></p>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="jockey">Жокей</label>
+                <div class="controls">
+                  $if slavery_context.is_new:
+                    <select class="input-xlarge" id="jockey" name="jockey_id">
+                  $else:
+                    <select class="input-xlarge disabled" id="jockey" name="jockey_id" disabled="disabled">
+                  $for jockey in slavery_context.jockeys:
+                    $if slavery_context.horse_jockey.jockey_id == jockey.id:
+                      <option value="$jockey.id" selected="selected">$jockey.fullname</option>
+                    $else:
+                      <option value="$jockey.id">$jockey.fullname</option>
+                  </select>
+                  <p class="help-block">Нет жокеев? <a href="/jockeys/new">Добавить</a></p>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="from_date">Когда это началось?</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" id="from_date" name="from_date" required="required"
+                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}\:[0-9]{2}\:[0-9]{2}"
+                    value="$slavery_context.horse_jockey.from_date"/>
+                  <p class="help-block">YYYY-MM-DD HH:MM:SS</p>
+                </div>
+              </div>
+              <div class="control-group">
+                <label class="control-label" for="due_date">Когда всё закончилось?</label>
+                <div class="controls">
+                  <input type="text" class="input-xlarge" id="due_date" name="due_date" required="required"
+                    pattern="[0-9]{4}-[0-9]{2}-[0-9]{2} [0-9]{2}\:[0-9]{2}\:[0-9]{2}"
+                    value="$slavery_context.horse_jockey.due_date"/>
+                  <p class="help-block">YYYY-MM-DD HH:MM:SS</p>
+                </div>
+              </div>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+              </div>
+            </fieldset>
+          </form>
+        </p>
+
+      </section>

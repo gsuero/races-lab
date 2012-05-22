@@ -1,0 +1,48 @@
+$def with (jockeys)
+
+      <section>
+
+        <div class="page-header">
+          <h1>Поиск жокеев</h1>
+        </div>
+        <p>
+          Результаты поиска жокеев по кличке лошадки, с которой они работали.
+        </p>
+        <p>
+          <div class="btn-group">
+            <a class="btn" href="/jockeys/new" title="Добавить нового жокея">Добавить</a>
+          </div>
+        </p>
+        <p>
+          $if len(jockeys) != 0:
+            <table class="table">
+              <thead>
+                <th>Адрес</th>
+                <th>Возраст</th>
+                <th>Вес</th>
+                <th>Рост</th>
+                <th>Имя</th>
+                <th>Действия</th>
+              </thead>
+              <tbody>
+                $for jockey in jockeys:
+                  <tr>
+                    <td>$jockey.address</td>
+                    <td>$jockey.age</td>
+                    <td>$jockey.weight</td>
+                    <td>$jockey.height</td>
+                    <td>$jockey.fullname</td>
+                    <td>
+                      <a href="/jockeys/$jockey.id/edit" title="Редактировать"><i class="icon-edit"></i></a>
+                      <a href="/jockeys/$jockey.id/delete" title="Уволить"><i class="icon-remove"></i></a>
+                    </td>
+                  </tr>
+              </tbody>
+            </table>
+          $else:
+            <div class="alert alert-success">
+              Вообще нету жокеев. Хотите <a href="/jockeys/new">добавить</a> новых?
+            </div>
+        </p>
+
+      </section>

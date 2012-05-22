@@ -13,14 +13,14 @@ import handlers.horses
 import handlers.horse_results
 import handlers.competitions
 import handlers.jockeys
-#import handlers.slavery
+import handlers.slavery
 
 import persistency.owners
 import persistency.horses
 import persistency.horse_results
 import persistency.competitions
 import persistency.jockeys
-#import persistency.slavery
+import persistency.slavery
 
 urls = (
     '/', 'Index',
@@ -106,11 +106,11 @@ if __name__ == "__main__":
         'JockeysUpdate': handlers.jockeys.JockeysUpdateHandler,
         'JockeysEdit': handlers.jockeys.JockeysEditHandler,
         'JockeysDelete': handlers.jockeys.JockeysDeleteHandler
-#        'Slavery': handlers.slavery.SlaveryHandler,
-#        'SlaveryNew': handlers.slavery.SlaveryNewHandler,
-#        'SlaveryUpdate': handlers.slavery.SlaveryUpdateHandler,
-#        'SlaveryEdit': handlers.slavery.SlaveryEditHandler,
-#        'SlaveryDelete': handlers.slavery.SlaveryDeleteHandler,
+        'Slavery': handlers.slavery.SlaveryHandler,
+        'SlaveryNew': handlers.slavery.SlaveryNewHandler,
+        'SlaveryUpdate': handlers.slavery.SlaveryUpdateHandler,
+        'SlaveryEdit': handlers.slavery.SlaveryEditHandler,
+        'SlaveryDelete': handlers.slavery.SlaveryDeleteHandler,
     })
     app.add_processor(init_processor)
     # Run.

@@ -12,11 +12,15 @@ import handlers.owners
 import handlers.horses
 import handlers.horse_results
 import handlers.competitions
+import handlers.jockeys
+#import handlers.slavery
 
 import persistency.owners
 import persistency.horses
 import persistency.horse_results
 import persistency.competitions
+import persistency.jockeys
+#import persistency.slavery
 
 urls = (
     '/', 'Index',
@@ -34,13 +38,22 @@ urls = (
     '/competitions/new', 'CompetitionsNew',
     '/competitions/update', 'CompetitionsUpdate',
     '/competitions/([a-f0-9]{32})/edit', 'CompetitionsEdit',
-    '/competitions/(all|[a-f0-9]{32})/delete', 'CompetitionsDelete',
-	
+    '/competitions/(all|[a-f0-9]{32})/delete', 'CompetitionsDelete',	
     '/horse_results', 'HorseResults',
     '/horse_results/new', 'HorseResultsNew',
     '/horse_results/update', 'HorseResultsUpdate',
     '/horse_results/([a-f0-9]{64})/edit', 'HorseResultsEdit',
-    '/horse_results/(all|[a-f0-9]{64})/delete', 'HorseResultsDelete'
+    '/horse_results/(all|[a-f0-9]{64})/delete', 'HorseResultsDelete',
+    '/jockeys', 'Jockeys',
+    '/jockeys/new', 'JockeysNew',
+    '/jockeys/update', 'JockeysUpdate',
+    '/jockeys/([a-f0-9]{32})/edit', 'JockeysEdit',
+    '/jockeys/(all|[a-f0-9]{32})/delete', 'JockeysDelete',
+    '/slavery', 'Slavery',
+    '/slavery/new', 'SlaveryNew',
+    '/slavery/update', 'SlaveryUpdate',
+    '/slavery/([a-f0-9]{32})/edit', 'SlaveryEdit',
+    '/slavery/(all|[a-f0-9]{32})/delete', 'SlaveryDelete',
 )
 
 # Master-template.
@@ -56,6 +69,7 @@ def init_processor(handler):
     web.ctx.horses = persistency.horses.HorsesPersistency(web.ctx.oracle)
     web.ctx.competitions = persistency.competitions.CompetitionsPersistency(web.ctx.oracle)
     web.ctx.horse_results = persistency.horse_results.HorseResultsPersistency(web.ctx.oracle)
+    web.ctx.jockeys = persistency.jockeys.JockeysPersistency(web.ctx.oracle)
     web.ctx.render = render
     return handler()
 
@@ -81,12 +95,21 @@ if __name__ == "__main__":
         'CompetitionsUpdate': handlers.competitions.CompetitionsUpdateHandler,
         'CompetitionsEdit': handlers.competitions.CompetitionsEditHandler,
         'CompetitionsDelete': handlers.competitions.CompetitionsDeleteHandler,
-
         'HorseResults': handlers.horse_results.HorseResultsHandler,
         'HorseResultsNew': handlers.horse_results.HorseResultsNewHandler,
         'HorseResultsUpdate': handlers.horse_results.HorseResultsUpdateHandler,
         'HorseResultsEdit': handlers.horse_results.HorseResultsEditHandler,
         'HorseResultsDelete': handlers.horse_results.HorseResultsDeleteHandler,
+        'Jockeys': handlers.jockeys.JockeysHandler,
+        'JockeysNew': handlers.jockeys.JockeysNewHandler,
+        'JockeysUpdate': handlers.jockeys.JockeysUpdateHandler,
+        'JockeysEdit': handlers.jockeys.JockeysEditHandler,
+        'JockeysDelete': handlers.jockeys.JockeysDeleteHandler
+#        'Slavery': handlers.slavery.SlaveryHandler,
+#        'SlaveryNew': handlers.slavery.SlaveryNewHandler,
+#        'SlaveryUpdate': handlers.slavery.SlaveryUpdateHandler,
+#        'SlaveryEdit': handlers.slavery.SlaveryEditHandler,
+#        'SlaveryDelete': handlers.slavery.SlaveryDeleteHandler,
     })
     app.add_processor(init_processor)
     # Run.

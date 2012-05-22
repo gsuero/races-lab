@@ -105,7 +105,7 @@ if __name__ == "__main__":
         'JockeysNew': handlers.jockeys.JockeysNewHandler,
         'JockeysUpdate': handlers.jockeys.JockeysUpdateHandler,
         'JockeysEdit': handlers.jockeys.JockeysEditHandler,
-        'JockeysDelete': handlers.jockeys.JockeysDeleteHandler
+        'JockeysDelete': handlers.jockeys.JockeysDeleteHandler,
         'Slavery': handlers.slavery.SlaveryHandler,
         'SlaveryNew': handlers.slavery.SlaveryNewHandler,
         'SlaveryUpdate': handlers.slavery.SlaveryUpdateHandler,
